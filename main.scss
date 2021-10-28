@@ -1,0 +1,115 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  outline: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  background: #000;
+  color: #fff;
+}
+
+.mySwiper {
+  width: 100%;
+  height: 100%;
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .form-container {
+      width: 700px;
+      button {
+        background: #fff;
+        padding: 0 35px;
+        height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #777;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(.5);
+        transition: 300ms all;
+      }
+      fieldset {
+        padding-bottom: 20px;
+        legend {
+          font-size: 30px;
+          font-weight: 300;
+          padding-bottom: 15px;
+        }
+        select,
+        textarea,
+        input {
+          width: 100%;
+          height: 50px;
+          font-size: 20px;
+          background: transparent;
+          color: #fff;
+          border-bottom: 1px solid rgba(#fff, .5);
+          &:focus {
+            border-color: #fff;
+          }
+        }
+        select {
+          appearance: none;
+          cursor: pointer;
+          background: url(img/angle-down.svg) no-repeat calc(100% - 10px);
+          background-size: 15px;
+        }
+        textarea {
+          height: auto;
+          resize: none;
+        }
+        .radio {
+          .text {
+            display: flex;
+            height: 50px;
+            align-items: center;
+            border: 1px solid rgba(#fff, .5);
+            border-radius: 3px;
+            margin-bottom: 10px;
+            padding: 0 7px;
+            cursor: pointer;
+            font-size: 20px;
+
+            .key {
+              width: 36px;
+              height: 36px;
+              background: rgba(#fff, .1);
+              border: 1px solid rgba(#fff, .5);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-right: 10px;
+            }
+          }
+          input {
+            display: none;
+            &:checked + .text {
+              border-color: #fff;
+              background: rgba(#fff, .1);
+              .key {
+                border-color: #fff;
+              }
+            }
+          }
+        }
+        &:valid + button {
+          opacity: 1;
+          visibility: visible;
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}
