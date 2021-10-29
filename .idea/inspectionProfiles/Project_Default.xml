@@ -1,0 +1,11 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="JSNonASCIINames" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="myAllowOnlyAscii" value="true" />
+    </inspection_tool>
+    <inspection_tool class="NonAsciiCharacters" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="CHECK_FOR_NOT_ASCII_IDENTIFIER_NAME" value="false" />
+    </inspection_tool>
+  </profile>
+</component>
