@@ -25,7 +25,8 @@ class Form {
         }
         let field = this[step.type](step)
         let template = document.getElementById('slide-template').innerHTML
-        console.log(template)
+        template = template.replace('{field}', field)
+        this.swiper.appendSlide(template)
     }
     start() {
         this.generate(this.steps[0])

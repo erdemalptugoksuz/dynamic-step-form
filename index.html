@@ -13,80 +13,96 @@
             <div class="form-container">
                 <fieldset>
                     <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
-                    <input type="date" required placeholder="İsim ve soy isimini yazınız...">
-                </fieldset>
-                <button type="button" class="next-button">Tamam</button>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="form-container">
-                <fieldset>
-                    <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
-                    <label class="upload-file">
-                        <input type="file" required>
-                        <span class="text" data-invalid="Fotoğraf yüklemek için tıklayın." data-valid="Fotoğraf başarıyla yüklendi."></span>
-                    </label>
-                </fieldset>
-                <button type="button" class="next-button">Tamam</button>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="form-container">
-                <fieldset>
-                    <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
-                    <label class="radio">
-                        <input type="radio" required name="gender" value="2">
-                        <span class="text">
-                            <span class="key">A</span>
-                            Erkek
-                        </span>
-                    </label>
-                    <label class="radio">
-                        <input type="radio" required name="gender" value="1">
-                        <span class="text">
-                            <span class="key">B</span>
-                            Kadın
-                        </span>
-                    </label>
-                </fieldset>
-                <button type="button" class="next-button">Tamam</button>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="form-container">
-                <fieldset>
-                    <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
-                    <select name="" required>
-                        <option value="">Seçin</option>
-                        <option value="p1">erdem</option>
-                        <option value="p2">yagmur</option>
-                        <option value="p3">murat</option>
-                    </select>
-                </fieldset>
-                <button type="button" class="next-button">Tamam</button>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="form-container">
-                <fieldset>
-                    <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
-                    <textarea required minlength="20" cols="30" rows="1" placeholder="İsim ve soy isimini yazınız..."></textarea>
-                </fieldset>
-                <button type="button" class="next-button">Tamam</button>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="form-container">
-                <fieldset>
-                    <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
                     <input type="text" required placeholder="İsim ve soy isimini yazınız...">
                 </fieldset>
                 <button type="button" class="next-button">Tamam</button>
             </div>
         </div>
-    </div>
 </div>
+<template id="slide-template">
+    <div class="swiper-slide">
+        <div class="form-container">
+            <fieldset>
+                <legend>{title}</legend>
+                {field}
+            </fieldset>
+            <button type="button" class="next-button">Tamam</button>
+        </div>
+    </div>
+</template>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script src="main.js"></script>
+    <!--<div class="swiper-slide">
+        <div class="form-container">
+            <fieldset>
+                <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
+                <label class="upload-file">
+                    <input type="file" required>
+                    <span class="text" data-invalid="Fotoğraf yüklemek için tıklayın." data-valid="Fotoğraf başarıyla yüklendi."></span>
+                </label>
+            </fieldset>
+            <button type="button" class="next-button">Tamam</button>
+        </div>
+    </div>
+-->
+    <!--<div class="swiper-slide">
+        <div class="form-container">
+            <fieldset>
+                <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
+                <label class="radio">
+                    <input type="radio" required name="gender" value="2">
+                    <span class="text">
+                            <span class="key">A</span>
+                            Erkek
+                        </span>
+                </label>
+                <label class="radio">
+                    <input type="radio" required name="gender" value="1">
+                    <span class="text">
+                            <span class="key">B</span>
+                            Kadın
+                        </span>
+                </label>
+            </fieldset>
+            <button type="button" class="next-button">Tamam</button>
+        </div>
+    </div>
+-->
+    <!--<div class="swiper-slide">
+        <div class="form-container">
+            <fieldset>
+                <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
+                <select name="" required>
+                    <option value="">Seçin</option>
+                    <option value="p1">erdem</option>
+                    <option value="p2">yagmur</option>
+                    <option value="p3">murat</option>
+                </select>
+            </fieldset>
+            <button type="button" class="next-button">Tamam</button>
+        </div>
+    </div>
+-->
+    <!--<div class="swiper-slide">
+        <div class="form-container">
+            <fieldset>
+                <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
+                <textarea required minlength="20" cols="30" rows="1" placeholder="İsim ve soy isimini yazınız..."></textarea>
+            </fieldset>
+            <button type="button" class="next-button">Tamam</button>
+        </div>
+    </div>
+-->
+    <!--<div class="swiper-slide">
+        <div class="form-container">
+            <fieldset>
+                <legend>Hangi köylümüzü kaydetmek istiyorsunuz?</legend>
+                <input type="text" required placeholder="İsim ve soy isimini yazınız...">
+            </fieldset>
+            <button type="button" class="next-button">Tamam</button>
+        </div>
+    </div>
+-->
+</div>
 </body>
 </html>
