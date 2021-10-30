@@ -1,6 +1,7 @@
 class Form {
     steps = []
     current = 0
+    loader = $('.loader')
     letters = ['a', 'b', 'c', 'd', 'e']
     constructor() {
         this.swiper = new Swiper(".mySwiper", {
@@ -29,6 +30,12 @@ class Form {
                 }
             }
         }.bind(this))
+    }
+    showLoader() {
+        this.loader.addClass('active')
+    }
+    hideLoader() {
+        this.loader.removeClass('active')
     }
     next() {
         this.current += 1
@@ -126,6 +133,7 @@ class Form {
             .replace('{field}', field)
             .replace('{title}', step.title)
         this.swiper.appendSlide(template)
+        this.hideLoader()
         if (this.current > 0) {
             this.swiper.slideNext()
         }
@@ -143,7 +151,13 @@ form.step({
     name: 'name',
     title: 'Adını giriniz',
     required: true,
-    autofocus: true
+    autofocus: true,
+    beforeNext: () => {
+        form.showLoader()
+        setTimeout(() => {
+            form.next()
+        }, 2000)
+    }
 }).step({
     name: 'surname',
     title: 'Soyadını giriniz',
