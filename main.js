@@ -1,152 +1,7 @@
-class Form {
-    steps = []
-    current = 0
-    loader = $('.loader')
-    letters = ['a', 'b', 'c', 'd', 'e']
-    constructor() {
-        this.swiper = new Swiper(".mySwiper", {
-            direction: "vertical",
-            on: {
-                slideChangeTransitionEnd: () => {
-                    $('.swiper-slide-active .form-item').focus()
-                }
-            }
-        });
-        $(document.body).on('keyup', function (e) {
-            if (e.key === 'Enter') {
-                $('.swiper-slide-active fieldset:valid + .next-button').click()
-            }else {
-                $('.swiper-slide-active [data-key="' + e.key + '"]').click()
-            }
-        })
-        $(document.body).on('click', '.next-button', function () {
-            if ($('.swiper-slide-next').length) {
-                this.swiper.slideNext()
-            }else {
-                if (this.steps[this.current].hasOwnProperty('beforeNext')) {
-                    this.steps[this.current].beforeNext()
-                } else {
-                    this.next()
-                }
-            }
-        }.bind(this))
-    }
-    showLoader() {
-        this.loader.addClass('active')
-    }
-    hideLoader() {
-        this.loader.removeClass('active')
-    }
-    next() {
-        this.current += 1
-        if (this.steps[this.current]) {
-            this.generate(this.steps[this.current])
-        }else {
-            this.callback()
-        }
-    }
-    step(step, after = false) {
-        if (after) {
-            this.steps = [ ... this.steps.slice(0, this.current + 1), step, ... this.steps.slice(this.current + 1)]
-        }else {
-            this.steps.push(step)
-        }
-        return this
-    }
-    value(input) {
-        let currentStep = this.steps[this.current],
-            value
-        if (currentStep.type === 'radio') {
-            value = $('.swiper-slide-active .form-item:checked').val()
-        }else {
-            value = $('.swiper-slide-active .form-item').val()
-        }
-        return value === input.toString()
-    }
-    input(step) {
-        return `<input 
-                class="form-item"
-                type="text" 
-                ${step.autofocus ? 'autofocus' : ''}
-                ${step.required ? 'required' : ''} 
-                placeholder="${step.placeholder}"
-                />`
-    }
-    file(step) {
-        return `<label class="upload-file">
-                    <input type="file" ${step.accept ? 'accept="' + step.accept + '"' : ''} ${step.required ? 'required' : ''}>
-                    <span class="text" data-invalid="${step.invalid ? step.invalid : 'Fotoğraf yüklemek için tıklayın.'}" data-valid="${step.valid ? step.valid : 'Fotoğraf başarıyla yüklendi.'}"></span>
-                </label>`
-    }
-    textarea(step) {
-        return `<textarea ${step.required ? 'required' : ''} cols="30" rows="5" placeholder="${step.placeholder}" name="${step.name}" class="form-item"></textarea>`
-    }
-    select(step) {
-        let html = `<select class="form-item" ${step.autofocus ? 'autofocus' : ''} ${step.required ? 'required' : ''} name="${step.name}">
-                <option value="">Seçin</option>`
-        $.each(step.values, (key, value) => {
-            html += `<option value="${key}">${value}</option>`
-        })
-        html += '</select>'
-        return html
-    }
-    date(step) {
-        let html = `<input class="form-item" ${step.autofocus ? 'autofocus' : ''} type="date" ${step.required ? 'required' : ''} name="${step.name}">`
-        html += '</input>'
-        return html
-    }
-    number(step) {
-        let html = `<input class="form-item" ${step.autofocus ? 'autofocus' : ''} type="number" ${step.required ? 'required' : ''} name="${step.name}">`
-        html += '</input>'
-        return html
-    }
-    email(step) {
-        let html = `<input class="form-item" ${step.autofocus ? 'autofocus' : ''} type="email" ${step.required ? 'required' : ''} name="${step.name}">`
-        html += '</input>'
-        return html
-    }
-    radio(step) {
-        let html = ''
-        let i = 0
-        $.each(step.values, (key, value) => {
-            html += `<label class="radio" data-key="${this.letters[i]}">
-                        <input class="form-item" type="radio" ${step.required ? 'required' : ''} name="${step.name}" value="${key}">
-                        <span class="text">
-                        <span class="key">${this.letters[i].toUpperCase()}</span>
-                        ${value}
-                        </span>
-                     </label>`
-            i++
-        })
-        return html
-    }
-    generate(step) {
-        if (!step.hasOwnProperty('type')) {
-            step.type = 'input'
-        }
-        if (!step.hasOwnProperty('placeholder')) {
-            step.placeholder = 'Cevabınızı buraya yazınız.'
-        }
-        let field = this[step.type](step)
-        let template = document.getElementById('slide-template').innerHTML
-        template = template
-            .replace('{field}', field)
-            .replace('{title}', step.title)
-        this.swiper.appendSlide(template)
-        this.hideLoader()
-        if (this.current > 0) {
-            this.swiper.slideNext()
-        }
-    }
-    start() {
-        this.generate(this.steps[this.current])
-    }
-    end(callback) {
-        this.callback = callback
-    }
-}
-
-const form = new Form()
+//Form adımları. - Form steps.
+const form = new Form('.mySwiper',{
+    allowTouchMove: false
+})
 form.step({
     name: 'name',
     title: 'Adını giriniz',
@@ -156,7 +11,7 @@ form.step({
         form.showLoader()
         setTimeout(() => {
             form.next()
-        }, 2000)
+        }, 1)
     }
 }).step({
     name: 'surname',
@@ -272,7 +127,7 @@ form.step({
 }).step({
     name: 'number',
     title: 'Telefon numarasını giriniz',
-    type: 'input',
+    type: 'tel',
     required: true
 }).step({
     name: 'email',
@@ -323,6 +178,10 @@ form.step({
     }
 })
 form.end(function () {
-    console.log('bitti.')
+    form.submit(function (response) {
+        form.step({
+            template: '#slide-end-template'
+        }).next()
+    })
 })
 form.start()
