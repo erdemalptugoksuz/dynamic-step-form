@@ -14,10 +14,10 @@
     </div>
 </div>
 
-<div class="swiper mySwiper">
+<form action="api.php" method="post" onsubmit="return false" class="swiper mySwiper">
     <div class="swiper-wrapper">
     </div>
-</div>
+</form>
 
 <template id="slide-template">
     <div class="swiper-slide">
@@ -30,8 +30,28 @@
         </div>
     </div>
 </template>
+
+<template id="slide-start-template">
+    <div class="swiper-slide">
+        <fieldset>
+            <h3>forma başla</h3>
+        </fieldset>
+        <button class="next-button">Başla</button>
+    </div>
+</template>
+
+<template id="slide-end-template">
+    <div class="swiper-slide">
+        <div class="slide-end">
+            <h3>Kayıt işlemi bitti.</h3>
+        </div>
+    </div>
+</template>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="jquery.form.min.js"></script>
+<script src="form.js"></script>
 <script src="main.js"></script>
 <!--<div class="swiper-slide">
             <div class="form-container">
