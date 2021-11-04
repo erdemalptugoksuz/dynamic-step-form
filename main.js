@@ -69,7 +69,7 @@ form.step({
     beforeNext: () => {
         if (form.value(8)) {
             form.step({
-                name: 'other_profession',
+                name: 'profession',
                 title: 'Mesleği nedir?',
                 type: 'input',
                 required: true
@@ -95,7 +95,7 @@ form.step({
     beforeNext: () => {
         if (form.value(8)) {
             form.step({
-                name: 'other_village',
+                name: 'village',
                 title: 'Hangi köyden?',
                 type: 'input',
                 required: true
